@@ -4,6 +4,28 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "antd/dist/antd.css";
+import { worker } from "./mocks/browser";
+import { ApolloClient, gql, NormalizedCacheObject } from "@apollo/client";
+import { cache } from "./cache";
+
+worker.start();
+
+const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
+  cache,
+  uri: "http://mock/graphql",
+});
+
+client
+  .query({
+    query: gql`
+      query MockTest {
+        user {
+          firstName
+        }
+      }
+    `,
+  })
+  .then((result) => console.log(result));
 
 ReactDOM.render(
   <React.StrictMode>
