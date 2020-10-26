@@ -7,12 +7,12 @@ import {
   QuestionCircleOutlined,
   CreditCardOutlined,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Sider } = Layout;
 
-function Main() {
+function Main(props: any) {
   let [collapsed, setCollapsed] = useState(true);
-
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
@@ -24,35 +24,21 @@ function Main() {
       >
         <div className="logo" />
         <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1" icon={<PieChartOutlined />}>
-            Dashboard
+          <Menu.Item key="dashboard" icon={<PieChartOutlined />}>
+            <Link to="/dashboard">Dashboard</Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<FileOutlined />}>
-            Extrato
+          <Menu.Item key="extrato" icon={<FileOutlined />}>
+            <Link to="/extrato">Extrato</Link>
           </Menu.Item>
-          <Menu.Item key="3" icon={<CreditCardOutlined />}>
-            Cartões
+          <Menu.Item key="cartoes" icon={<CreditCardOutlined />}>
+            <Link to="/cartoes">Cartões</Link>
           </Menu.Item>
           <Menu.Item key="4" icon={<QuestionCircleOutlined />}>
             Sobre
           </Menu.Item>
         </Menu>
       </Sider>
-      <Layout>
-        <Header style={{ padding: 0 }}>
-          <div style={{ paddingLeft: 24, color: "white" }}>
-            Here goes the header.
-          </div>
-        </Header>
-        <Content style={{ margin: "0 16px" }}>
-          <div style={{ padding: 24, minHeight: 360 }}>
-            Here goes the dashboard.
-          </div>
-        </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Fintech Mock ©2020 Created by Vitor Milano
-        </Footer>
-      </Layout>
+      {props.children}
     </Layout>
   );
 }

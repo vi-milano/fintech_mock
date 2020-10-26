@@ -7,6 +7,7 @@ import "antd/dist/antd.css";
 import { worker } from "./mocks/browser";
 import { ApolloClient, gql, NormalizedCacheObject } from "@apollo/client";
 import { cache } from "./cache";
+import { BrowserRouter } from "react-router-dom";
 
 worker.start();
 
@@ -29,7 +30,9 @@ client
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
