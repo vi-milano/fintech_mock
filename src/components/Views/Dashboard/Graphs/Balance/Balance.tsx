@@ -14,26 +14,24 @@ function Balance() {
     { x: 5, y: 2 },
   ];
   return (
-    <>
-      <Col span={16}>
-        <QueueAnim duration={2000}>
-          <Card key="k3" title="Saldo">
-            <div style={{ height: 300 }}>
-              <VictoryChart
-                domainPadding={{ y: 50 }}
-                padding={{ top: 15, bottom: 15, left: 30, right: 20 }}
-                animate={{
-                  duration: 1000,
-                  onLoad: { duration: 1000 },
-                }}
-              >
-                <VictoryLine data={data} />
-              </VictoryChart>
-            </div>
-          </Card>
-        </QueueAnim>
-      </Col>
-    </>
+    <Col span={16}>
+      <QueueAnim duration={2000}>
+        <Card key="k3" title="Saldo">
+          <div style={{ height: 300 }}>
+            <VictoryChart
+              domainPadding={{ y: 50 }}
+              padding={{ top: 15, bottom: 15, left: 30, right: 20 }}
+              animate={{
+                duration: 1000,
+                onLoad: { duration: 1000 },
+              }}
+            >
+              <VictoryLine data={data} />
+            </VictoryChart>
+          </div>
+        </Card>
+      </QueueAnim>
+    </Col>
   );
 }
 
