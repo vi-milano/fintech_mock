@@ -2,6 +2,7 @@ import React from "react";
 import "./Dashboard.scss";
 import { Layout, Row } from "antd";
 import Balance from "./Graphs/Balance/Balance";
+import Budget from "./Graphs/Budget/Budget";
 import Statement from "./Tables/Statement/Statement";
 import Cards from "./Other/Cards/Cards";
 const { Header, Footer, Content } = Layout;
@@ -18,6 +19,7 @@ function Dashboard() {
           </Row>
           <Row style={{ padding: "16px 16px" }} gutter={16}>
             <Cards />
+            <Budget />
           </Row>
         </div>
       </Content>
