@@ -1,8 +1,7 @@
 import React from "react";
 import "./Dashboard.scss";
-import QueueAnim from "rc-queue-anim";
-import { Layout, Row, Col } from "antd";
-
+import { Layout, Row } from "antd";
+import Balance from "./Graphs/Balance/Balance";
 const { Header, Footer, Content } = Layout;
 
 function Dashboard() {
@@ -10,13 +9,11 @@ function Dashboard() {
     <Layout>
       <Header style={{ color: "white" }}> Here goes the header</Header>
       <Content>
-        <QueueAnim type={["right", "left"]}>
-          <Row key="1">
-            <Col span={24}>
-              <div>Row</div>
-            </Col>
+        <div style={{ margin: "0 auto", maxWidth: "1440px" }}>
+          <Row style={{ padding: "16px 16px" }} gutter={16}>
+            <Balance />
           </Row>
-        </QueueAnim>
+        </div>
       </Content>
       <Footer>Fintech Mock @ 2020 by Vitor Milano</Footer>
     </Layout>
