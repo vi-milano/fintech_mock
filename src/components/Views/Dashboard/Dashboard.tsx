@@ -3,6 +3,7 @@ import "./Dashboard.scss";
 import { Layout, Row } from "antd";
 import Balance from "./Graphs/Balance/Balance";
 import Statement from "./Tables/Statement/Statement";
+import Cards from "./Other/Cards/Cards";
 const { Header, Footer, Content } = Layout;
 
 function Dashboard() {
@@ -14,6 +15,9 @@ function Dashboard() {
           <Row style={{ padding: "16px 16px" }} gutter={16}>
             <Balance />
             <Statement />
+          </Row>
+          <Row style={{ padding: "16px 16px" }} gutter={16}>
+            <Cards />
           </Row>
         </div>
       </Content>
