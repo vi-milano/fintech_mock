@@ -1,0 +1,20 @@
+.statement__container {
+  background-color: white;
+  box-shadow: 6px 6px 9px -6px rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
