@@ -14,7 +14,7 @@ function Budget() {
   return (
     <Col>
       <QueueAnim duration={2000}>
-        <Card key="k21" title="Orçamento">
+        <Card bodyStyle={{ height: 250 }} hoverable key="k21" title="Orçamento">
           <div className="budget__container">
             <div style={{ width: "300px" }}>
               <svg width={300} height={200}>

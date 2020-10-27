@@ -1,6 +1,5 @@
 import React from "react";
 import "./Balance.scss";
-import QueueAnim from "rc-queue-anim";
 import { Col, Card } from "antd";
 import { VictoryChart, VictoryLine } from "victory";
 
@@ -14,23 +13,19 @@ function Balance() {
     { x: 5, y: 2 },
   ];
   return (
-    <Col span={16}>
-      <QueueAnim duration={2000}>
-        <Card key="k3" title="Saldo">
-          <div style={{ height: 300 }}>
-            <VictoryChart
-              domainPadding={{ y: 50 }}
-              padding={{ top: 15, bottom: 15, left: 30, right: 20 }}
-              animate={{
-                duration: 1000,
-                onLoad: { duration: 1000 },
-              }}
-            >
-              <VictoryLine data={data} />
-            </VictoryChart>
-          </div>
-        </Card>
-      </QueueAnim>
+    <Col>
+      <Card hoverable bodyStyle={{ height: 250 }} key="k3" title="Saldo">
+        <VictoryChart
+          domainPadding={{ y: 50 }}
+          padding={{ top: 15, bottom: 15, left: 30, right: 20 }}
+          animate={{
+            duration: 1000,
+            onLoad: { duration: 1000 },
+          }}
+        >
+          <VictoryLine data={data} />
+        </VictoryChart>
+      </Card>
     </Col>
   );
 }

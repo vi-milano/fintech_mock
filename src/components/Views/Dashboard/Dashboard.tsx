@@ -14,16 +14,16 @@ function Dashboard() {
     <Layout>
       <Header style={{ color: "white" }}> Here goes the header</Header>
       <Content style={{ margin: 10 }}>
-        <div style={{ margin: "0 auto", maxWidth: "1920px" }}>
+        <div style={{ margin: "0 auto", maxWidth: "1440px" }}>
           <QueueAnim
             interval={500}
             duration={2000}
             component={Row}
             componentProps={{ gutter: [10, 10] }}
           >
-            <Balance key="z" />
-            <Statement key="zz" />
             <Cards key="zzz" />
+            <Statement key="zz" />
+            <Balance key="z" />
             <Budget key="zzzz" />
           </QueueAnim>
         </div>

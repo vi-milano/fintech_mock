@@ -49,17 +49,22 @@ function Statement() {
     },
   ];
   return (
-    <Col span={8}>
+    <Col span={12}>
       <QueueAnim duration={2000}>
-        <Card key="k2" title="Extrato">
-          <QueueAnim>
-            <Table
-              key="asa"
-              pagination={false}
-              dataSource={dataSource}
-              columns={columns}
-            />
-          </QueueAnim>
+        <Card
+          hoverable
+          bodyStyle={{ height: 250, display: "flex", alignItems: "center" }}
+          key="k2"
+          title="Extrato"
+        >
+          <Table
+            key="asa"
+            pagination={false}
+            size="small"
+            style={{ width: "100%" }}
+            dataSource={dataSource}
+            columns={columns}
+          />
         </Card>
       </QueueAnim>
     </Col>
