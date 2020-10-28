@@ -14,7 +14,7 @@ function Cards() {
       >
         <div className="creditcard__container">
           <div className="creditcard__body">
-            <div className="creditcard__body--provider">Nome do Provedor</div>
+            <div className="creditcard__body--provider">Nu Bank</div>
             <div className="creditcard__body--decoration">
               <TableOutlined />
             </div>

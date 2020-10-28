@@ -13,7 +13,7 @@ function Balance() {
     { x: 5, y: 2 },
   ];
   return (
-    <Col>
+    <Col span={12}>
       <Card hoverable bodyStyle={{ height: 250 }} key="k3" title="Saldo">
         <VictoryChart
           domainPadding={{ y: 50 }}
@@ -23,7 +23,7 @@ function Balance() {
             onLoad: { duration: 1000 },
           }}
         >
-          <VictoryLine data={data} />
+          <VictoryLine interpolation="natural" data={data} />
         </VictoryChart>
       </Card>
     </Col>
