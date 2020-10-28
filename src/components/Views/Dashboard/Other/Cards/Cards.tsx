@@ -7,9 +7,11 @@ function Cards() {
   return (
     <Col span={12}>
       <Card
+        headStyle={{ fontSize: 20 }}
         hoverable
         bodyStyle={{ height: 250, display: "flex", alignItems: "center" }}
         key="k5"
+        size="small"
         title="Cartões"
       >
         <div className="creditcard__container">

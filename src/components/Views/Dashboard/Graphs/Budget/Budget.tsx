@@ -141,7 +141,14 @@ function Budget() {
 
   return (
     <Col span={12}>
-      <Card bodyStyle={{ height: 250 }} hoverable key="k21" title="Orçamento">
+      <Card
+        size="small"
+        headStyle={{ fontSize: 20 }}
+        bodyStyle={{ height: 280 }}
+        hoverable
+        key="k21"
+        title="Orçamento"
+      >
         <div className="budget__container">
           <MyResponsivePie />
         </div>

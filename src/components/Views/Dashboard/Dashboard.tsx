@@ -12,8 +12,15 @@ const { Header, Footer, Content } = Layout;
 function Placeholder() {
   return (
     <Col span={6}>
-      <Card size="small" hoverable key="adada" title="Dados">
-        <div style={{ fontSize: 24 }}>R$ 10.000,00</div>
+      <Card
+        headStyle={{ fontSize: 20 }}
+        bodyStyle={{ height: 100, display: "flex", alignItems: "center" }}
+        size="small"
+        hoverable
+        key="adada"
+        title="Dados"
+      >
+        <div style={{ fontSize: 30 }}>R$ 10.000,00</div>
       </Card>
     </Col>
   );

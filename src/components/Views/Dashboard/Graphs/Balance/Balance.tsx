@@ -171,7 +171,7 @@ function MyResponsiveLine() {
   return (
     <ResponsiveLine
       data={data}
-      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+      margin={{ top: 5, right: 90, bottom: 25, left: 40 }}
       xScale={{ type: "point" }}
       xFormat=" >-"
       yScale={{
@@ -251,7 +251,14 @@ function Balance() {
   ];
   return (
     <Col span={12}>
-      <Card hoverable bodyStyle={{ height: 250 }} key="k3" title="Saldo">
+      <Card
+        hoverable
+        headStyle={{ fontSize: 20 }}
+        bodyStyle={{ height: 280 }}
+        key="k3"
+        title="Saldo"
+        size="small"
+      >
         <MyResponsiveLine />
       </Card>
     </Col>

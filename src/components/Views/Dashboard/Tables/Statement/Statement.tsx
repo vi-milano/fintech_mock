@@ -52,6 +52,8 @@ function Statement() {
     <Col span={12}>
       <QueueAnim duration={2000}>
         <Card
+          size="small"
+          headStyle={{ fontSize: 20 }}
           hoverable
           bodyStyle={{ height: 250, display: "flex", alignItems: "center" }}
           key="k2"
