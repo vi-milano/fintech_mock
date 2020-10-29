@@ -14,14 +14,8 @@ const { Sider } = Layout;
 function Main(props: any) {
   let [collapsed, setCollapsed] = useState(true);
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={() => {
-          setCollapsed(!collapsed);
-        }}
-      >
+    <Layout className="layout__container">
+      <Sider collapsed={collapsed}>
         <div className="logo" />
         <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
           <Menu.Item key="dashboard" icon={<PieChartOutlined />}>
