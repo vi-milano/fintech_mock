@@ -1,8 +1,10 @@
 import React from "react";
 import "./Statement.scss";
-import { Layout, List } from "antd";
-import { DollarOutlined } from "@ant-design/icons";
+import { Card, Col, Layout, Tag, Row } from "antd";
+import { SwapOutlined, RetweetOutlined } from "@ant-design/icons";
 import QueueAnim from "rc-queue-anim";
+import { Avatar } from "antd";
+import { BarExtendedDatum, ResponsiveBar } from "@nivo/bar";
 
 const { Footer, Content } = Layout;
 const data = [
@@ -47,61 +49,264 @@ const data = [
     title: "Peça de foguete 42",
   },
 ];
+
+function RespBar() {
+  const data = [
+    {
+      country: "JAN",
+      "hot dog": 67,
+      "hot dogColor": "hsl(275, 70%, 50%)",
+    },
+    {
+      country: "FEV",
+      "hot dog": 40,
+      "hot dogColor": "hsl(360, 70%, 50%)",
+    },
+    {
+      country: "MAR",
+      "hot dog": 84,
+      "hot dogColor": "hsl(86, 70%, 50%)",
+    },
+    {
+      country: "ABR",
+      "hot dog": 72,
+      "hot dogColor": "hsl(174, 70%, 50%)",
+    },
+    {
+      country: "MAI",
+      "hot dog": -40,
+      "hot dogColor": "hsl(5, 70%, 50%)",
+    },
+    {
+      country: "JUN",
+      "hot dog": 23,
+      "hot dogColor": "hsl(208, 70%, 50%)",
+    },
+    {
+      country: "JUL",
+      "hot dog": 40,
+      "hot dogColor": "hsl(113, 70%, 50%)",
+    },
+  ];
+
+  return (
+    <ResponsiveBar
+      data={data}
+      keys={["hot dog"]}
+      indexBy="country"
+      margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
+      padding={0.6}
+      colors={"#7eff88"}
+      defs={[
+        {
+          id: "negativo",
+          type: "patternLines",
+          background: "#ff5252",
+          color: "#ff9393",
+          size: 4,
+          padding: 1,
+          stagger: true,
+        },
+        {
+          id: "positivo",
+          type: "patternLines",
+          background: "#d0daff",
+          color: "#9aaef5",
+          size: 4,
+          padding: 1,
+          stagger: true,
+        },
+      ]}
+      fill={[
+        {
+          match: (d: BarExtendedDatum) => {
+            console.log(d.data.value);
+            return d.data.value < 0;
+          },
+          id: "negativo",
+        },
+        {
+          match: (d: BarExtendedDatum) => {
+            console.log(d.data.value);
+            return d.data.value > 0;
+          },
+          id: "positivo",
+        },
+      ]}
+      borderColor="#363636"
+      axisTop={null}
+      axisRight={null}
+      axisBottom={{
+        tickSize: 0,
+        tickPadding: 5,
+        tickRotation: 0,
+        legend: "",
+        legendPosition: "middle",
+        legendOffset: 32,
+      }}
+      axisLeft={null}
+      labelSkipWidth={12}
+      labelSkipHeight={12}
+      enableLabel={false}
+      labelTextColor="#000000"
+      legends={[]}
+      animate={true}
+      borderRadius={5}
+      borderWidth={2}
+      motionStiffness={90}
+      motionDamping={15}
+    />
+  );
+}
+
+function StatementItem(data: {}) {
+  return (
+    <Card
+      size="small"
+      style={{ margin: "4px auto " }}
+      bodyStyle={{ display: "flex" }}
+    >
+      <Row style={{ width: "100%" }}>
+        <Col
+          span={3}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Avatar
+            style={{ color: "black", backgroundColor: "transparent" }}
+            size={65}
+            icon={<SwapOutlined />}
+          />
+        </Col>
+        <Col style={{ paddingLeft: 10 }} span={15}>
+          <div style={{ fontSize: 16, fontWeight: "bold" }}>
+            Restaurante Dona Cacilda
+          </div>
+          <div>10/10/2020 </div>
+          <Tag color="green">Alimentação</Tag>
+        </Col>
+        <Col span={6} style={{ display: "flex", alignItems: "center" }}>
+          <span style={{ fontSize: 20 }}>R$ 10.000,00</span>
+        </Col>
+      </Row>
+    </Card>
+  );
+}
+
+function BalanceItem(data: {}) {
+  return (
+    <Card
+      size="small"
+      style={{ margin: "4px auto " }}
+      bodyStyle={{ display: "flex" }}
+    >
+      <Row style={{ width: "100%" }}>
+        <Col
+          span={4}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Avatar
+            style={{ color: "black", backgroundColor: "transparent" }}
+            size={65}
+            icon={<RetweetOutlined />}
+          />
+        </Col>
+        <Col
+          span={10}
+          style={{
+            paddingLeft: 10,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <div style={{ fontSize: 16, fontWeight: "bold" }}>Entradas</div>
+          <div style={{ fontSize: 18, fontWeight: "bold", color: "green" }}>
+            R$ 12.460,00
+          </div>
+        </Col>
+        <Col
+          span={10}
+          style={{
+            paddingLeft: 10,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <div style={{ fontSize: 16, fontWeight: "bold" }}>Saídas</div>
+          <div style={{ fontSize: 18, fontWeight: "bold", color: "red" }}>
+            R$ 9.320,00
+          </div>
+        </Col>
+      </Row>
+    </Card>
+  );
+}
 function Statement() {
   return (
     <Layout>
-      <Content>
-        <QueueAnim duration={700}>
-          <div
-            key="state"
-            style={{ margin: "0 auto", marginTop: "10vh", width: "50%" }}
-          >
-            <div
-              style={{
-                fontSize: 25,
-                borderBottom: "2px solid black",
-                width: "fit-content",
-                marginBottom: 12,
-              }}
+      <QueueAnim
+        interval={400}
+        component={Content}
+        componentProps={{
+          style: { display: "flex", flexDirection: "column", padding: 16 },
+        }}
+      >
+        <Row key="a" gutter={[16, 16]}>
+          <Col span={24}>
+            <Card hoverable></Card>
+          </Col>
+        </Row>
+        <QueueAnim
+          key="b"
+          component={Row}
+          interval={400}
+          componentProps={{
+            style: { flexGrow: 1 },
+            gutter: [16, 16],
+          }}
+        >
+          <Col key="a1" span={14}>
+            <Card
+              title="Extrato"
+              headStyle={{ fontSize: 20 }}
+              style={{ height: "100%" }}
+              hoverable
             >
-              Extrato
-            </div>
-            <div
-              className="statement__container"
-              style={{
-                backgroundColor: "white",
-                overflow: "auto",
-                height: "67vh",
-              }}
+              <StatementItem />
+              <StatementItem />
+              <StatementItem />
+              <StatementItem />
+              <StatementItem />
+              <StatementItem />
+            </Card>
+          </Col>
+          <Col key="a2" span={10}>
+            <Card
+              title="Resumo mensal"
+              headStyle={{ fontSize: 20 }}
+              style={{ height: "100%" }}
+              hoverable
             >
-              <List
-                itemLayout="horizontal"
-                dataSource={data}
-                renderItem={(item) => (
-                  <List.Item key={item.title}>
-                    <List.Item.Meta
-                      avatar={
-                        <DollarOutlined
-                          style={{
-                            fontSize: "2.2em",
-                            marginTop: 8,
-                            marginLeft: 24,
-                          }}
-                        />
-                      }
-                      title={<a href="#">{item.title}</a>}
-                      description="10/10/2020"
-                    />
-                    <div style={{ fontWeight: "bold", marginRight: 20 }}>
-                      R$10.000
-                    </div>
-                  </List.Item>
-                )}
-              />
-            </div>
-          </div>
+              <div style={{ height: "50%" }}>
+                <BalanceItem />
+              </div>
+              <div style={{ height: "500px" }}>
+                <RespBar />
+              </div>
+            </Card>
+          </Col>
         </QueueAnim>
-      </Content>
+      </QueueAnim>
+
       <Footer>Fintech Mock @ 2020 by Vitor Milano</Footer>
     </Layout>
   );
