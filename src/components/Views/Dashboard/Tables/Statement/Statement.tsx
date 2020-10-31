@@ -49,27 +49,23 @@ function Statement() {
     },
   ];
   return (
-    <Col span={12}>
-      <QueueAnim duration={2000}>
-        <Card
-          size="small"
-          headStyle={{ fontSize: 20 }}
-          hoverable
-          bodyStyle={{ height: 250, display: "flex", alignItems: "center" }}
-          key="k2"
-          title="Extrato"
-        >
-          <Table
-            key="asa"
-            pagination={false}
-            size="small"
-            style={{ width: "100%" }}
-            dataSource={dataSource}
-            columns={columns}
-          />
-        </Card>
-      </QueueAnim>
-    </Col>
+    <Card
+      size="small"
+      headStyle={{ fontSize: 20 }}
+      hoverable
+      bodyStyle={{ height: 250, display: "flex", alignItems: "center" }}
+      key="k2"
+      title="Extrato"
+    >
+      <Table
+        key="asa"
+        pagination={false}
+        size="small"
+        style={{ width: "100%" }}
+        dataSource={dataSource}
+        columns={columns}
+      />
+    </Card>
   );
 }
 

@@ -250,18 +250,16 @@ function Balance() {
     { x: 5, y: 2 },
   ];
   return (
-    <Col span={12}>
-      <Card
-        hoverable
-        headStyle={{ fontSize: 20 }}
-        bodyStyle={{ height: 280 }}
-        key="k3"
-        title="Saldo"
-        size="small"
-      >
-        <MyResponsiveLine />
-      </Card>
-    </Col>
+    <Card
+      hoverable
+      headStyle={{ fontSize: 20 }}
+      bodyStyle={{ height: 280 }}
+      key="k3"
+      title="Saldo"
+      size="small"
+    >
+      <MyResponsiveLine />
+    </Card>
   );
 }
 

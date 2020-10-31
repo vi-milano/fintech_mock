@@ -140,20 +140,18 @@ function Budget() {
   ];
 
   return (
-    <Col span={12}>
-      <Card
-        size="small"
-        headStyle={{ fontSize: 20 }}
-        bodyStyle={{ height: 280 }}
-        hoverable
-        key="k21"
-        title="Orçamento"
-      >
-        <div className="budget__container">
-          <MyResponsivePie />
-        </div>
-      </Card>
-    </Col>
+    <Card
+      size="small"
+      headStyle={{ fontSize: 20 }}
+      bodyStyle={{ height: 280 }}
+      hoverable
+      key="k21"
+      title="Orçamento"
+    >
+      <div className="budget__container">
+        <MyResponsivePie />
+      </div>
+    </Card>
   );
 }
 

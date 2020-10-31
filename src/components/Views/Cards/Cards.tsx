@@ -122,6 +122,7 @@ function CardOverview() {
       extra={
         <Select defaultValue="lucy">
           <Option value="lucy">VISA ****1313</Option>
+          <Option value="exz">ELO ****4123</Option>
         </Select>
       }
     >
