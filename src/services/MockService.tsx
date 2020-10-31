@@ -30,6 +30,19 @@ export const SMALL_STATE = gql`
     }
   }
 `;
+export const CARD_INFO = gql`
+  query GetCardInfo {
+    cards {
+      dataVencimento
+      final
+      label
+      limite
+      saldo
+      titular
+      banco
+    }
+  }
+`;
 // const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 //   cache,
 //   uri: "http://mock/graphql",

@@ -325,8 +325,6 @@ function Statement(props: any) {
           </Col>
         </QueueAnim>
       </QueueAnim>
-
-      <Footer>Fintech Mock @ 2020 by Vitor Milano</Footer>
     </Layout>
   );
 }

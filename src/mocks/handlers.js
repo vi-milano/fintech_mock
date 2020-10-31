@@ -63,4 +63,30 @@ export const handlers = [
       })
     );
   }),
+  graphql.query("GetCardInfo", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        cards: [
+          {
+            dataVencimento: "10/04",
+            final: "1034",
+            label: "VISA",
+            limite: "4000",
+            saldo: "2400",
+            titular: "Vitor Milano",
+            banco: "NuBank",
+          },
+          {
+            dataVencimento: "23/05",
+            final: "4487",
+            label: "ELO",
+            limite: "6000",
+            saldo: "4600",
+            titular: "Elisa Silva",
+            banco: "Santander",
+          },
+        ],
+      })
+    );
+  }),
 ];

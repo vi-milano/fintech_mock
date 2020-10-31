@@ -27,12 +27,6 @@
     width: 260px;
     height: 160px;
     border-radius: 5px;
-    background: rgb(115, 32, 143);
-    background: linear-gradient(
-      146deg,
-      rgba(115, 32, 143, 1) 0%,
-      rgba(201, 91, 255, 1) 100%
-    );
     &--data {
       display: flex;
       justify-content: space-around;
@@ -51,4 +45,16 @@
       font-size: 24px;
     }
   }
+}
+
+.santander {
+  background: linear-gradient(146deg, #ff0000 0%, #2d2c2c 100%);
+}
+
+.nubank {
+  background: linear-gradient(
+    146deg,
+    rgba(115, 32, 143, 1) 0%,
+    rgba(201, 91, 255, 1) 100%
+  );
 }

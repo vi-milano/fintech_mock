@@ -10,6 +10,7 @@ import {
   BUSCA_QUERY,
   DASH_ACC_INFO,
   SMALL_STATE,
+  CARD_INFO,
 } from "../../../services/MockService";
 import { gql, useQuery } from "@apollo/client";
 import NumberFormat from "react-number-format";
@@ -72,6 +73,7 @@ interface AccountInfo {
 function Dashboard() {
   const accInfo = useQuery<AccountInfo>(DASH_ACC_INFO);
   const stateInfo = useQuery(SMALL_STATE);
+  const cardInfo = useQuery(CARD_INFO);
 
   return (
     <Layout>
@@ -113,7 +115,7 @@ function Dashboard() {
           componentProps={{ gutter: [15, 15] }}
         >
           <Col key="cards" span={12}>
-            <Cards />
+            <Cards data={cardInfo.data} />
           </Col>
           <Col key="statement" span={12}>
             <Statement data={stateInfo.data} />

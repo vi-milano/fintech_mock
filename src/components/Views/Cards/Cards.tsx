@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Cards.scss";
 import { Card, Col, Layout, Tag, Row, List } from "antd";
 import QueueAnim from "rc-queue-anim";
 import { ResponsiveLine } from "@nivo/line";
 import CardStatement from "./CardStatement/CardStatement";
 import { Select } from "antd";
+import NumberFormat from "react-number-format";
+import { useQuery } from "@apollo/client";
+import { CARD_INFO } from "../../../services/MockService";
 
 const { Option } = Select;
 const { Footer, Content } = Layout;
@@ -110,7 +113,9 @@ const MyResponsiveLine = () => {
   );
 };
 
-function CardOverview() {
+function CardOverview(props: any) {
+  let cards = props.data.cards;
+  const [activeCard, setActiveCard] = useState(0);
   return (
     <Card
       style={{ display: "flex", flexDirection: "column", height: "100%" }}
@@ -120,29 +125,104 @@ function CardOverview() {
       key="k5"
       title="Cartões"
       extra={
-        <Select defaultValue="lucy">
-          <Option value="lucy">VISA ****1313</Option>
-          <Option value="exz">ELO ****4123</Option>
+        <Select
+          onChange={(value) => {
+            setActiveCard(Number(value));
+          }}
+          defaultValue="0"
+        >
+          <Option value="0">
+            {cards[0].label}****{cards[0].final}
+          </Option>
+          <Option value="1">ELO ****4123</Option>
         </Select>
       }
     >
-      <div className="xcreditcard__container">
-        <div className="xcreditcard__body">
-          <div className="xcreditcard__body--provider">Nu Bank</div>
-          <div className="xcreditcard__body--decoration">XXX</div>
-          <div className="xcreditcard__body--number">**** **** **** 1313</div>
-          <div className="xcreditcard__body--data">
-            <div className="xcreditcard__data--name">Vitor Milano</div>
-            <div className="xcreditcard__data--date">10/20</div>
-            <div className="xcreditcard__data--label">VISA</div>
+      <div className="creditcard__container">
+        <div
+          className={`creditcard__body ${cards[activeCard].banco
+            .toLowerCase()
+            .replace(" ", "_")}`}
+        >
+          <div className="creditcard__body--provider">
+            {cards[activeCard].banco}
+          </div>
+          <div className="creditcard__body--decoration">
+            <img
+              style={{ height: 35 }}
+              src={
+                "https://cdn140.picsart.com/288622685092211.png?type=webp&to=min&r=640"
+              }
+            />
+          </div>
+          <div className="creditcard__body--number">
+            **** **** **** {cards[activeCard].final}
+          </div>
+          <div className="creditcard__body--data">
+            <div className="creditcard__data--name">
+              {cards[activeCard].titular}
+            </div>
+            <div className="creditcard__data--date">
+              {cards[activeCard].dataVencimento}
+            </div>
+            <div className="creditcard__data--label">
+              {cards[activeCard].label}
+            </div>
           </div>
         </div>
-        <div className="xcreditcard__info">
+        <div className="creditcard__info">
           <ul>
-            <li>Limite: 1000</li>
-            <li>Data de fechamento: 10/10/2020</li>
-            <li>Limite disponível: 400</li>
-            <li>Fatura atual: 600</li>
+            <li>
+              Limite:{" "}
+              <NumberFormat
+                decimalScale={2}
+                fixedDecimalScale={true}
+                thousandSeparator={"."}
+                decimalSeparator={","}
+                prefix={"R$"}
+                displayType={"text"}
+                value={cards[activeCard].limite}
+                renderText={(value) => (
+                  <span style={{ fontWeight: "bold" }}>{value}</span>
+                )}
+              />
+            </li>
+            <li>
+              Data de fechamento:{" "}
+              <span style={{ fontWeight: "bold" }}>
+                {cards[activeCard].dataVencimento}
+              </span>
+            </li>
+            <li>
+              Limite disponível:{" "}
+              <NumberFormat
+                decimalScale={2}
+                fixedDecimalScale={true}
+                thousandSeparator={"."}
+                decimalSeparator={","}
+                prefix={"R$"}
+                displayType={"text"}
+                value={cards[activeCard].limite - cards[activeCard].saldo}
+                renderText={(value) => (
+                  <span style={{ fontWeight: "bold" }}>{value}</span>
+                )}
+              />
+            </li>
+            <li>
+              Fatura atual:{" "}
+              <NumberFormat
+                decimalScale={2}
+                fixedDecimalScale={true}
+                thousandSeparator={"."}
+                decimalSeparator={","}
+                prefix={"R$"}
+                displayType={"text"}
+                value={cards[activeCard].saldo}
+                renderText={(value) => (
+                  <span style={{ fontWeight: "bold" }}>{value}</span>
+                )}
+              />
+            </li>
           </ul>
         </div>
       </div>
@@ -151,6 +231,8 @@ function CardOverview() {
 }
 
 function Cards() {
+  const cardInfo = useQuery(CARD_INFO);
+
   return (
     <Layout>
       <Content style={{ margin: "10px 10px 0 10px" }}>
@@ -167,7 +249,7 @@ function Cards() {
           >
             <Row key="row-1" gutter={[10, 10]} style={{ height: "50%" }}>
               <Col span={24}>
-                <CardOverview />
+                <CardOverview data={cardInfo.data} />
               </Col>
             </Row>
             <Row key="row-2" style={{ height: "50%" }}>
@@ -191,7 +273,6 @@ function Cards() {
           </Col>
         </QueueAnim>
       </Content>
-      <Footer>Fintech Mock @ 2020 by Vitor Milano</Footer>
     </Layout>
   );
 }

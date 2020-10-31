@@ -143,7 +143,7 @@ function Budget() {
     <Card
       size="small"
       headStyle={{ fontSize: 20 }}
-      bodyStyle={{ height: 280 }}
+      bodyStyle={{ height: 345 }}
       hoverable
       key="k21"
       title="Orçamento"
