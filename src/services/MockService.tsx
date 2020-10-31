@@ -21,6 +21,15 @@ export const DASH_ACC_INFO = gql`
     creditAvailable
   }
 `;
+export const SMALL_STATE = gql`
+  query GetSmallStatement {
+    entry {
+      date
+      desc
+      value
+    }
+  }
+`;
 // const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 //   cache,
 //   uri: "http://mock/graphql",

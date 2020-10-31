@@ -2,8 +2,9 @@ import React from "react";
 import "./Statement.scss";
 import QueueAnim from "rc-queue-anim";
 import { Col, Card, Table } from "antd";
+import NumberFormat from "react-number-format";
 
-function Statement() {
+function Statement(props: any) {
   const dataSource = [
     {
       key: "1",
@@ -34,8 +35,8 @@ function Statement() {
   const columns = [
     {
       title: "Data",
-      dataIndex: "data",
-      key: "data",
+      dataIndex: "date",
+      key: "date",
     },
     {
       title: "Descrição",
@@ -44,10 +45,36 @@ function Statement() {
     },
     {
       title: "Valor",
-      dataIndex: "valor",
-      key: "valor",
+      dataIndex: "value",
+      key: "value",
+      render: (value: any) => (
+        <NumberFormat
+          decimalScale={2}
+          fixedDecimalScale={true}
+          thousandSeparator={"."}
+          decimalSeparator={","}
+          prefix={"R$"}
+          displayType={"text"}
+          value={value}
+          renderText={(v) => {
+            console.log(value, value > 0);
+            return (
+              <span
+                style={
+                  value[0] !== "-"
+                    ? { fontWeight: "bold", color: "green" }
+                    : { fontWeight: "bold", color: "red" }
+                }
+              >
+                {v}
+              </span>
+            );
+          }}
+        />
+      ),
     },
   ];
+  console.log(props.data.entry);
   return (
     <Card
       size="small"
@@ -62,7 +89,7 @@ function Statement() {
         pagination={false}
         size="small"
         style={{ width: "100%" }}
-        dataSource={dataSource}
+        dataSource={props.data.entry}
         columns={columns}
       />
     </Card>

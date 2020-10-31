@@ -6,7 +6,11 @@ import Budget from "./Graphs/Budget/Budget";
 import Statement from "./Tables/Statement/Statement";
 import Cards from "./Other/Cards/Cards";
 import QueueAnim from "rc-queue-anim";
-import { BUSCA_QUERY, DASH_ACC_INFO } from "../../../services/MockService";
+import {
+  BUSCA_QUERY,
+  DASH_ACC_INFO,
+  SMALL_STATE,
+} from "../../../services/MockService";
 import { gql, useQuery } from "@apollo/client";
 import NumberFormat from "react-number-format";
 
@@ -38,7 +42,7 @@ function Placeholder(props: any) {
             renderText={(value) => (
               <span
                 style={
-                  props.value > 0
+                  !props.isLoading && props.value[0] !== "-"
                     ? { fontWeight: "bold", color: "green" }
                     : { fontWeight: "bold", color: "red" }
                 }
@@ -66,31 +70,38 @@ interface AccountInfo {
 }
 
 function Dashboard() {
-  const { loading, data } = useQuery<AccountInfo>(DASH_ACC_INFO);
+  const accInfo = useQuery<AccountInfo>(DASH_ACC_INFO);
+  const stateInfo = useQuery(SMALL_STATE);
 
   return (
     <Layout>
-      <Header></Header>
-
       <Content style={{ margin: "10px 10px 0 10px" }}>
         <QueueAnim
           interval={300}
           component={Row}
           componentProps={{ gutter: [15, 15] }}
         >
-          <Placeholder value={data?.accountBalance} title="Saldo" key="d" />
           <Placeholder
-            value={data?.creditCardBalance}
+            value={accInfo.data?.accountBalance}
+            isLoading={accInfo.loading}
+            title="Saldo"
+            key="d"
+          />
+          <Placeholder
+            value={accInfo.data?.creditCardBalance}
+            isLoading={accInfo.loading}
             title="Saldo dos cartões"
             key="dd"
           />
           <Placeholder
-            value={data?.investmentBalance}
+            value={accInfo.data?.investmentBalance}
+            isLoading={accInfo.loading}
             title="Total em investimentos"
             key="ddd"
           />
           <Placeholder
-            value={data?.creditAvailable}
+            value={accInfo.data?.creditAvailable}
+            isLoading={accInfo.loading}
             title="Crédito disponível"
             key="dddd"
           />
@@ -105,7 +116,7 @@ function Dashboard() {
             <Cards />
           </Col>
           <Col key="statement" span={12}>
-            <Statement />
+            <Statement data={stateInfo.data} />
           </Col>
         </QueueAnim>
         <QueueAnim
@@ -123,41 +134,6 @@ function Dashboard() {
         </QueueAnim>
       </Content>
     </Layout>
-
-    // <Layout>
-    //   <Header style={{ color: "white" }}></Header>
-    //   <Content style={{ margin: 10 }}>
-    //     <div style={{ margin: "0 auto", maxWidth: "1440px" }}>
-    //       <QueueAnim
-    //         interval={300}
-    //         component={Row}
-    //         componentProps={{ gutter: [15, 15] }}
-    //       >
-    //         <Placeholder value={data?.accountBalance} title="Saldo" key="d" />
-    // <Placeholder
-    //   value={data?.creditCardBalance}
-    //   title="Saldo dos cartões"
-    //   key="dd"
-    // />
-    // <Placeholder
-    //   value={data?.investmentBalance}
-    //   title="Total em investimentos"
-    //   key="ddd"
-    // />
-    // <Placeholder
-    //   value={data?.creditAvailable}
-    //   title="Crédito disponível"
-    //   key="dddd"
-    // />
-    //         <Cards key="zzz" />
-    //         <Statement key="zz" />
-    //         <Balance key="z" />
-    //         <Budget key="zzzz" />
-    //       </QueueAnim>
-    //     </div>
-    //   </Content>
-    //   <Footer>Fintech Mock @ 2020 by Vitor Milano</Footer>
-    // </Layout>
   );
 }
 

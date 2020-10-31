@@ -53,47 +53,72 @@ const data = [
 function RespBar() {
   const data = [
     {
-      country: "JAN",
-      "hot dog": 67,
-      "hot dogColor": "hsl(275, 70%, 50%)",
+      month: "JAN",
+      saldo: -32000,
+      saldoColor: "hsl(275, 70%, 50%)",
     },
     {
-      country: "FEV",
-      "hot dog": 40,
-      "hot dogColor": "hsl(360, 70%, 50%)",
+      month: "FEV",
+      saldo: -24000,
+      saldoColor: "hsl(360, 70%, 50%)",
     },
     {
-      country: "MAR",
-      "hot dog": 84,
-      "hot dogColor": "hsl(86, 70%, 50%)",
+      month: "MAR",
+      saldo: -9000,
+      saldoColor: "hsl(86, 70%, 50%)",
     },
     {
-      country: "ABR",
-      "hot dog": 72,
-      "hot dogColor": "hsl(174, 70%, 50%)",
+      month: "ABR",
+      saldo: 14000,
+      saldoColor: "hsl(174, 70%, 50%)",
     },
     {
-      country: "MAI",
-      "hot dog": -40,
-      "hot dogColor": "hsl(5, 70%, 50%)",
+      month: "MAI",
+      saldo: 25000,
+      saldoColor: "hsl(5, 70%, 50%)",
     },
     {
-      country: "JUN",
-      "hot dog": 23,
-      "hot dogColor": "hsl(208, 70%, 50%)",
+      month: "JUN",
+      saldo: 36000,
+      saldoColor: "hsl(208, 70%, 50%)",
     },
     {
-      country: "JUL",
-      "hot dog": 40,
-      "hot dogColor": "hsl(113, 70%, 50%)",
+      month: "JUL",
+      saldo: 40000,
+      saldoColor: "hsl(113, 70%, 50%)",
+    },
+    {
+      month: "AGO",
+      saldo: 39000,
+      saldoColor: "hsl(113, 70%, 50%)",
+    },
+    {
+      month: "SET",
+      saldo: 32000,
+      saldoColor: "hsl(113, 70%, 50%)",
+    },
+    {
+      month: "OUT",
+      saldo: 35000,
+      saldoColor: "hsl(113, 70%, 50%)",
+    },
+    {
+      month: "NOV",
+      saldo: 36000,
+      saldoColor: "hsl(113, 70%, 50%)",
+    },
+    {
+      month: "DEZ",
+      saldo: 31000,
+      saldoColor: "hsl(113, 70%, 50%)",
     },
   ];
 
   return (
     <ResponsiveBar
       data={data}
-      keys={["hot dog"]}
-      indexBy="country"
+      keys={["saldo"]}
+      indexBy="month"
       margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
       padding={0.6}
       colors={"#7eff88"}
@@ -102,7 +127,7 @@ function RespBar() {
           id: "negativo",
           type: "patternLines",
           background: "#ff5252",
-          color: "#ff9393",
+          color: "#ff5252",
           size: 4,
           padding: 1,
           stagger: true,
@@ -111,7 +136,7 @@ function RespBar() {
           id: "positivo",
           type: "patternLines",
           background: "#d0daff",
-          color: "#9aaef5",
+          color: "#d0daff",
           size: 4,
           padding: 1,
           stagger: true,
@@ -151,8 +176,7 @@ function RespBar() {
       labelTextColor="#000000"
       legends={[]}
       animate={true}
-      borderRadius={5}
-      borderWidth={2}
+      borderWidth={1}
       motionStiffness={90}
       motionDamping={15}
     />
@@ -250,7 +274,7 @@ function BalanceItem(data: {}) {
     </Card>
   );
 }
-function Statement() {
+function Statement(props: any) {
   return (
     <Layout>
       <QueueAnim
@@ -260,11 +284,6 @@ function Statement() {
           style: { display: "flex", flexDirection: "column", padding: 16 },
         }}
       >
-        <Row key="a" gutter={[16, 16]}>
-          <Col span={24}>
-            <Card hoverable></Card>
-          </Col>
-        </Row>
         <QueueAnim
           key="b"
           component={Row}
