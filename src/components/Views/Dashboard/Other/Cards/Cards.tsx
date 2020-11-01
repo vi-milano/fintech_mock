@@ -5,7 +5,6 @@ import NumberFormat from "react-number-format";
 
 function Cards(props: any) {
   const { Option } = Select;
-  console.log("ada", props);
   let cards = props.data.data.cards;
   const [activeCard, setActiveCard] = useState(0);
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import "./Statement.scss";
 import { Card, Col, Layout, Tag, Row } from "antd";
 import {
@@ -8,11 +8,14 @@ import {
   BarcodeOutlined,
   DollarOutlined,
   MoreOutlined,
+  ShrinkOutlined,
+  ArrowsAltOutlined,
+  BarsOutlined,
 } from "@ant-design/icons";
 import QueueAnim from "rc-queue-anim";
 import { Avatar } from "antd";
-import { BarExtendedDatum, ResponsiveBar } from "@nivo/bar";
-import { useQuery } from "@apollo/client";
+import { Bar, BarExtendedDatum, ResponsiveBar } from "@nivo/bar";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { FULL_STATE } from "../../../services/MockService";
 import NumberFormat from "react-number-format";
 
@@ -319,9 +322,55 @@ function BalanceItem(data: {}) {
     </Card>
   );
 }
+
+function HeaderButton(props: {
+  title: string;
+  color: string;
+  icon: ReactNode;
+  filter: string;
+  change: Function;
+}) {
+  const { title, icon, color, change, filter } = props;
+  return (
+    <Card
+      bodyStyle={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: 10,
+        width: 100,
+      }}
+      hoverable
+      bordered={false}
+      onClick={() => {
+        change(filter);
+      }}
+    >
+      {
+        <Avatar
+          style={{ color: color, backgroundColor: "#f3f3f3" }}
+          size="large"
+          icon={icon}
+        />
+      }
+      <div>{title}</div>
+    </Card>
+  );
+}
 function Statement() {
-  const { data, loading } = useQuery(FULL_STATE);
-  console.log("Dad", data);
+  const { data, loading, refetch } = useQuery(FULL_STATE, {
+    fetchPolicy: "no-cache",
+  });
+
+  const [filter, setFilter] = useState("");
+  useEffect(() => {
+    if (filter) {
+      refetch({ filter: filter });
+    }
+    console.log(data);
+    console.log(loading);
+  }, [loading, filter]);
+
   return (
     <Layout>
       <QueueAnim
@@ -333,7 +382,63 @@ function Statement() {
       >
         <Row gutter={[16, 10]}>
           <Col style={{ width: "100%" }} span={24}>
-            <Card hoverable>Oi</Card>
+            <Card
+              bodyStyle={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: 10,
+              }}
+            >
+              <HeaderButton
+                title="Todos"
+                color="navy"
+                icon={<BarsOutlined />}
+                filter="todos"
+                change={setFilter}
+              />
+              <HeaderButton
+                title="Créditos"
+                color="limegreen"
+                icon={<ShrinkOutlined />}
+                filter="creditos"
+                change={setFilter}
+              />
+              <HeaderButton
+                title="Débitos"
+                color="red"
+                icon={<ArrowsAltOutlined />}
+                filter="debitos"
+                change={setFilter}
+              />
+              <HeaderButton
+                title="Boletos"
+                color="black"
+                icon={<BarcodeOutlined />}
+                filter="boletos"
+                change={setFilter}
+              />
+              <HeaderButton
+                title="Cartões"
+                color="darkviolet"
+                icon={<CreditCardOutlined />}
+                filter="cartões"
+                change={setFilter}
+              />
+              <HeaderButton
+                title="Transferências"
+                color="firebrick"
+                icon={<RetweetOutlined />}
+                filter="transferências"
+                change={setFilter}
+              />
+              <HeaderButton
+                title="Rendimentos"
+                color="green"
+                icon={<DollarOutlined />}
+                filter="rendimentos"
+                change={setFilter}
+              />
+            </Card>
           </Col>
         </Row>
 
@@ -354,7 +459,7 @@ function Statement() {
               style={{ height: "100%" }}
               hoverable
             >
-              {!loading
+              {!loading && data
                 ? data.entry.map((d: any) => (
                     <StatementItem loading={loading} data={d} />
                   ))

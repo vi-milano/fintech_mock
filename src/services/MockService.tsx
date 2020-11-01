@@ -31,8 +31,8 @@ export const SMALL_STATE = gql`
   }
 `;
 export const FULL_STATE = gql`
-  query GetFullStatement {
-    entry {
+  query GetFullStatement($filter: String!) {
+    entry(filter: $filter) {
       date
       desc
       flag
