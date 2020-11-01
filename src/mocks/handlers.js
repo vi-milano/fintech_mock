@@ -64,26 +64,107 @@ export const handlers = [
     );
   }),
   graphql.query("GetCardInfo", (req, res, ctx) => {
+    const { label } = req.variables;
+    const data = [
+      {
+        dataVencimento: "10/04",
+        final: "1034",
+        label: "VISA",
+        limite: "4000",
+        saldo: "2400",
+        titular: "Vitor Milano",
+        banco: "NuBank",
+      },
+      {
+        dataVencimento: "23/05",
+        final: "4487",
+        label: "ELO",
+        limite: "6000",
+        saldo: "4600",
+        titular: "Elisa Silva",
+        banco: "Santander",
+      },
+    ];
+    let x = label ? "TRUE" : "FALSE";
+    console.log("label", label, x);
+
+    let response = data;
+    if (label) {
+      console.log("TEM LABEL", label);
+      response = data.filter((d) => d.label === label);
+    }
     return res(
       ctx.data({
-        cards: [
+        cards: response,
+      })
+    );
+  }),
+  graphql.query("GetFullStatement", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        entry: [
           {
-            dataVencimento: "10/04",
-            final: "1034",
-            label: "VISA",
-            limite: "4000",
-            saldo: "2400",
-            titular: "Vitor Milano",
-            banco: "NuBank",
+            date: "10/04/2020",
+            desc: "McDonalds Paulista",
+            flag: "debito",
+            categoria: "alimentação",
+            value: "-46,23",
           },
           {
-            dataVencimento: "23/05",
-            final: "4487",
-            label: "ELO",
-            limite: "6000",
-            saldo: "4600",
-            titular: "Elisa Silva",
-            banco: "Santander",
+            date: "14/05/2020",
+            desc: "Depósito de cliente",
+            flag: "transferencia",
+            categoria: null,
+            value: "5200,13",
+          },
+          {
+            date: "19/04/2020",
+            desc: "Pagamento de fornecedor",
+            flag: "boleto",
+            categoria: "material",
+            value: "-324,90",
+          },
+          {
+            date: "20/05/2020",
+            desc: "Rendimento de aplicação",
+            flag: "rendimento",
+            categoria: null,
+            value: "500,95",
+          },
+          {
+            date: "22/05/2020",
+            desc: "Aporte de investimento",
+            flag: "transferencia",
+            categoria: null,
+            value: "10000,95",
+          },
+          {
+            date: "24/04/2020",
+            desc: "IPTU",
+            flag: "boleto",
+            categoria: "impostos",
+            value: "-420,00",
+          },
+          {
+            date: "27/04/2020",
+            desc: "Material de escritório",
+            flag: "debito",
+            categoria: "escritório",
+            value: "-324,90",
+          },
+          {
+            date: "28/04/2020",
+            desc: "Salário de funcionário",
+            flag: "transferencia",
+            categoria: "salario",
+            value: "-5000,00",
+          },
+          {
+            date: "30/04/2020",
+            desc: "Pagamento de aluguel",
+            flag: "transferencia",
+            categoria: "escritório",
+            value: "-7000,00",
           },
         ],
       })

@@ -255,7 +255,7 @@ function Balance() {
       headStyle={{ fontSize: 20 }}
       bodyStyle={{ height: 345 }}
       key="k3"
-      title="Saldo"
+      title="Saldo mensal"
       size="small"
     >
       <MyResponsiveLine />

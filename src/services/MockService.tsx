@@ -30,9 +30,34 @@ export const SMALL_STATE = gql`
     }
   }
 `;
+export const FULL_STATE = gql`
+  query GetFullStatement {
+    entry {
+      date
+      desc
+      flag
+      categoria
+      value
+    }
+  }
+`;
 export const CARD_INFO = gql`
   query GetCardInfo {
     cards {
+      dataVencimento
+      final
+      label
+      limite
+      saldo
+      titular
+      banco
+    }
+  }
+`;
+
+export const TEST = gql`
+  query GetCardInfo($label: String!) {
+    cards(label: $label) {
       dataVencimento
       final
       label

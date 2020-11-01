@@ -57,7 +57,6 @@ function Statement(props: any) {
           displayType={"text"}
           value={value}
           renderText={(v) => {
-            console.log(value, value > 0);
             return (
               <span
                 style={
@@ -74,7 +73,6 @@ function Statement(props: any) {
       ),
     },
   ];
-  console.log(props.data.entry);
   return (
     <Card
       size="small"
@@ -82,7 +80,7 @@ function Statement(props: any) {
       hoverable
       bodyStyle={{ height: 250, display: "flex", alignItems: "center" }}
       key="k2"
-      title="Extrato"
+      title="Últimas transações"
     >
       <Table
         key="asa"

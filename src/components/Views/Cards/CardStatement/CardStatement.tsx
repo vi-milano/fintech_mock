@@ -55,7 +55,7 @@ const dataSource = [
 
 function CardStatement() {
   return (
-    <Card style={{ height: "100%" }} title="Extrato" hoverable>
+    <Card style={{ height: "100%" }} title="Fatura" hoverable>
       <List
         dataSource={dataSource}
         renderItem={(d) => (

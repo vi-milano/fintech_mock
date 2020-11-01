@@ -1,116 +1,72 @@
 import React from "react";
 import "./Statement.scss";
 import { Card, Col, Layout, Tag, Row } from "antd";
-import { SwapOutlined, RetweetOutlined } from "@ant-design/icons";
+import {
+  SwapOutlined,
+  RetweetOutlined,
+  CreditCardOutlined,
+  BarcodeOutlined,
+  DollarOutlined,
+  MoreOutlined,
+} from "@ant-design/icons";
 import QueueAnim from "rc-queue-anim";
 import { Avatar } from "antd";
 import { BarExtendedDatum, ResponsiveBar } from "@nivo/bar";
+import { useQuery } from "@apollo/client";
+import { FULL_STATE } from "../../../services/MockService";
+import NumberFormat from "react-number-format";
 
-const { Footer, Content } = Layout;
-const data = [
-  {
-    title: "Peça de foguete 1",
-  },
-  {
-    title: "Peça de foguete 2",
-  },
-  {
-    title: "Peça de foguete 3",
-  },
-  {
-    title: "Peça de foguete 4",
-  },
-  {
-    title: "Peça de foguete 11",
-  },
-  {
-    title: "Peça de foguete 21",
-  },
-  {
-    title: "Peça de foguete 31",
-  },
-  {
-    title: "Peça de foguete 41",
-  },
-
-  {
-    title: "Peça de foguete 42",
-  },
-  {
-    title: "Peça de foguete 12",
-  },
-  {
-    title: "Peça de foguete 22",
-  },
-  {
-    title: "Peça de foguete 32",
-  },
-  {
-    title: "Peça de foguete 42",
-  },
-];
+const { Content } = Layout;
 
 function RespBar() {
   const data = [
     {
       month: "JAN",
       saldo: -32000,
-      saldoColor: "hsl(275, 70%, 50%)",
     },
     {
       month: "FEV",
       saldo: -24000,
-      saldoColor: "hsl(360, 70%, 50%)",
     },
     {
       month: "MAR",
       saldo: -9000,
-      saldoColor: "hsl(86, 70%, 50%)",
     },
     {
       month: "ABR",
       saldo: 14000,
-      saldoColor: "hsl(174, 70%, 50%)",
     },
     {
       month: "MAI",
       saldo: 25000,
-      saldoColor: "hsl(5, 70%, 50%)",
     },
     {
       month: "JUN",
       saldo: 36000,
-      saldoColor: "hsl(208, 70%, 50%)",
     },
     {
       month: "JUL",
       saldo: 40000,
-      saldoColor: "hsl(113, 70%, 50%)",
     },
     {
       month: "AGO",
       saldo: 39000,
-      saldoColor: "hsl(113, 70%, 50%)",
     },
     {
       month: "SET",
       saldo: 32000,
-      saldoColor: "hsl(113, 70%, 50%)",
     },
     {
       month: "OUT",
       saldo: 35000,
-      saldoColor: "hsl(113, 70%, 50%)",
     },
     {
       month: "NOV",
       saldo: 36000,
-      saldoColor: "hsl(113, 70%, 50%)",
     },
     {
       month: "DEZ",
       saldo: 31000,
-      saldoColor: "hsl(113, 70%, 50%)",
     },
   ];
 
@@ -145,14 +101,12 @@ function RespBar() {
       fill={[
         {
           match: (d: BarExtendedDatum) => {
-            console.log(d.data.value);
             return d.data.value < 0;
           },
           id: "negativo",
         },
         {
           match: (d: BarExtendedDatum) => {
-            console.log(d.data.value);
             return d.data.value > 0;
           },
           id: "positivo",
@@ -183,7 +137,79 @@ function RespBar() {
   );
 }
 
-function StatementItem(data: {}) {
+function StatementItem(props: any) {
+  const { data, loading } = props;
+
+  const chooseTag = (categoria: string) => {
+    switch (categoria) {
+      case "alimentação":
+        return <Tag color="green">Alimentação</Tag>;
+        break;
+      case "escritório":
+        return <Tag color="purple">Escritório</Tag>;
+        break;
+      case "material":
+        return <Tag color="magenta">Material</Tag>;
+        break;
+      case "impostos":
+        return <Tag color="orange">Impostos</Tag>;
+        break;
+      case "salario":
+        return <Tag color="geekblue">Salário</Tag>;
+        break;
+      default:
+        return <Tag>Sem categoria</Tag>;
+    }
+  };
+  const chooseFlag = (flag: string) => {
+    switch (flag) {
+      case "debito":
+        return (
+          <Avatar
+            style={{ color: "black", backgroundColor: "transparent" }}
+            size={65}
+            icon={<CreditCardOutlined />}
+          />
+        );
+        break;
+      case "transferencia":
+        return (
+          <Avatar
+            style={{ color: "black", backgroundColor: "transparent" }}
+            size={65}
+            icon={<SwapOutlined />}
+          />
+        );
+        break;
+      case "rendimento":
+        return (
+          <Avatar
+            style={{ color: "black", backgroundColor: "transparent" }}
+            size={65}
+            icon={<DollarOutlined />}
+          />
+        );
+        break;
+      case "boleto":
+        return (
+          <Avatar
+            style={{ color: "black", backgroundColor: "transparent" }}
+            size={65}
+            icon={<BarcodeOutlined />}
+          />
+        );
+        break;
+      default:
+        return (
+          <Avatar
+            style={{ color: "black", backgroundColor: "transparent" }}
+            size={65}
+            icon={<MoreOutlined />}
+          />
+        );
+    }
+  };
+
   return (
     <Card
       size="small"
@@ -202,18 +228,35 @@ function StatementItem(data: {}) {
           <Avatar
             style={{ color: "black", backgroundColor: "transparent" }}
             size={65}
-            icon={<SwapOutlined />}
+            icon={chooseFlag(data.flag)}
           />
         </Col>
         <Col style={{ paddingLeft: 10 }} span={15}>
-          <div style={{ fontSize: 16, fontWeight: "bold" }}>
-            Restaurante Dona Cacilda
-          </div>
-          <div>10/10/2020 </div>
-          <Tag color="green">Alimentação</Tag>
+          <div style={{ fontSize: 16, fontWeight: "bold" }}>{data.desc}</div>
+          <div>{data.date}</div>
+          {chooseTag(data.categoria)}
         </Col>
         <Col span={6} style={{ display: "flex", alignItems: "center" }}>
-          <span style={{ fontSize: 20 }}>R$ 10.000,00</span>
+          <NumberFormat
+            decimalScale={2}
+            fixedDecimalScale={true}
+            thousandSeparator={"."}
+            decimalSeparator={","}
+            prefix={"R$"}
+            displayType={"text"}
+            value={data.value}
+            renderText={(value) => (
+              <span
+                style={
+                  !loading && data.value[0] !== "-"
+                    ? { fontSize: 20, fontWeight: "bold", color: "green" }
+                    : { fontSize: 20, fontWeight: "bold", color: "red" }
+                }
+              >
+                {value}
+              </span>
+            )}
+          />
         </Col>
       </Row>
     </Card>
@@ -225,7 +268,9 @@ function BalanceItem(data: {}) {
     <Card
       size="small"
       style={{ margin: "4px auto " }}
-      bodyStyle={{ display: "flex" }}
+      bodyStyle={{
+        display: "flex",
+      }}
     >
       <Row style={{ width: "100%" }}>
         <Col
@@ -274,7 +319,9 @@ function BalanceItem(data: {}) {
     </Card>
   );
 }
-function Statement(props: any) {
+function Statement() {
+  const { data, loading } = useQuery(FULL_STATE);
+  console.log("Dad", data);
   return (
     <Layout>
       <QueueAnim
@@ -284,6 +331,12 @@ function Statement(props: any) {
           style: { display: "flex", flexDirection: "column", padding: 16 },
         }}
       >
+        <Row gutter={[16, 10]}>
+          <Col style={{ width: "100%" }} span={24}>
+            <Card hoverable>Oi</Card>
+          </Col>
+        </Row>
+
         <QueueAnim
           key="b"
           component={Row}
@@ -297,15 +350,15 @@ function Statement(props: any) {
             <Card
               title="Extrato"
               headStyle={{ fontSize: 20 }}
+              bodyStyle={{ overflowY: "scroll", height: 680, marginTop: 1 }}
               style={{ height: "100%" }}
               hoverable
             >
-              <StatementItem />
-              <StatementItem />
-              <StatementItem />
-              <StatementItem />
-              <StatementItem />
-              <StatementItem />
+              {!loading
+                ? data.entry.map((d: any) => (
+                    <StatementItem loading={loading} data={d} />
+                  ))
+                : null}
             </Card>
           </Col>
           <Col key="a2" span={10}>

@@ -11,6 +11,7 @@ import {
   DASH_ACC_INFO,
   SMALL_STATE,
   CARD_INFO,
+  TEST,
 } from "../../../services/MockService";
 import { gql, useQuery } from "@apollo/client";
 import NumberFormat from "react-number-format";
@@ -18,9 +19,6 @@ import NumberFormat from "react-number-format";
 const { Header, Footer, Content } = Layout;
 
 function Placeholder(props: any) {
-  // useEffect(() => {
-  //   buscaX().then((r) => console.log(r));
-  // });
   return (
     <Col span={6}>
       <Card
@@ -115,7 +113,7 @@ function Dashboard() {
           componentProps={{ gutter: [15, 15] }}
         >
           <Col key="cards" span={12}>
-            <Cards data={cardInfo.data} />
+            <Cards data={cardInfo} />
           </Col>
           <Col key="statement" span={12}>
             <Statement data={stateInfo.data} />

@@ -146,7 +146,7 @@ function Budget() {
       bodyStyle={{ height: 345 }}
       hoverable
       key="k21"
-      title="Orçamento"
+      title="Gastos por categoria"
     >
       <div className="budget__container">
         <MyResponsivePie />
