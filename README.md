@@ -21,4 +21,4 @@ $ yarn start
 
 MIT
 
-[click here for the online demo!]: https://https://fintech-mock.web.app/
+[click here for the online demo!]: https://fintech-mock.web.app/
