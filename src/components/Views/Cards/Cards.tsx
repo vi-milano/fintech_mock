@@ -10,7 +10,7 @@ import { useQuery } from "@apollo/client";
 import { CARD_INFO } from "../../../services/MockService";
 
 const { Option } = Select;
-const { Footer, Content } = Layout;
+const { Content } = Layout;
 
 const MyResponsiveLine = () => {
   const data = [
@@ -114,8 +114,10 @@ const MyResponsiveLine = () => {
 };
 
 function CardOverview(props: any) {
-  let cards = props.data.cards;
-  const [activeCard, setActiveCard] = useState(0);
+  let { data, change, activeCard } = props;
+  let cards = data.cards;
+
+  // const [activeCard, setActiveCard] = useState(0);
   return (
     <Card
       style={{ display: "flex", flexDirection: "column", height: "100%" }}
@@ -127,7 +129,7 @@ function CardOverview(props: any) {
       extra={
         <Select
           onChange={(value) => {
-            setActiveCard(Number(value));
+            change(Number(value));
           }}
           defaultValue="0"
         >
@@ -231,7 +233,8 @@ function CardOverview(props: any) {
 }
 
 function Cards() {
-  const cardInfo = useQuery(CARD_INFO);
+  const { data, loading } = useQuery(CARD_INFO);
+  const [activeCard, setActiveCard] = useState(0);
 
   return (
     <Layout>
@@ -249,7 +252,13 @@ function Cards() {
           >
             <Row key="row-1" gutter={[10, 10]} style={{ height: "50%" }}>
               <Col span={24}>
-                <CardOverview data={cardInfo.data} />
+                {!loading ? (
+                  <CardOverview
+                    data={data}
+                    activeCard={activeCard}
+                    change={setActiveCard}
+                  />
+                ) : null}
               </Col>
             </Row>
             <Row key="row-2" style={{ height: "50%" }}>
@@ -269,7 +278,9 @@ function Cards() {
             </Row>
           </QueueAnim>
           <Col key="col-2" span={12}>
-            <CardStatement />
+            {!loading ? (
+              <CardStatement dataSource={data.cards[activeCard]["extrato"]} />
+            ) : null}
           </Col>
         </QueueAnim>
       </Content>

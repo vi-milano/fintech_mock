@@ -51,6 +51,7 @@ export const CARD_INFO = gql`
       saldo
       titular
       banco
+      extrato
     }
   }
 `;

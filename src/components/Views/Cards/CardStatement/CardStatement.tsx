@@ -1,67 +1,87 @@
 import React from "react";
 import "./CardStatement.scss";
 import { Card, List } from "antd";
-import { EllipsisOutlined } from "@ant-design/icons";
-import QueueAnim from "rc-queue-anim";
 import { Avatar } from "antd";
-
-const dataSource = [
+import {
+  EllipsisOutlined,
+  PaperClipOutlined,
+  MoreOutlined,
+  CoffeeOutlined,
+  CarOutlined,
+  ShoppingOutlined,
+} from "@ant-design/icons";
+const dataSourceA = [
   {
     title: "Netflix",
-    date: "10-03-2020",
-    price: "R$20.102,03",
-  },
-  {
-    title: "McDonald's",
-    date: "10-03-2020",
-    price: "R$3.102,33",
-  },
-  {
-    title: "Posto de Gasolina",
-    date: "10-03-2020",
-    price: "R$2.102,42",
-  },
-  {
-    title: "Máquina de lavar",
-    date: "10-03-2020",
-    price: "R$27.321,13",
-  },
-  {
-    title: "Netflix",
-    date: "10-03-2020",
-    price: "R$20.102,03",
-  },
-  {
-    title: "McDonald's",
-    date: "10-03-2020",
-    price: "R$3.102,33",
-  },
-  {
-    title: "Posto de Gasolina",
-    date: "10-03-2020",
-    price: "R$2.102,42",
-  },
-  {
-    title: "Máquina de lavar",
-    date: "10-03-2020",
-    price: "R$27.321,13",
-  },
-  {
-    title: "Netflix",
+    label: "outros",
     date: "10-03-2020",
     price: "R$20.102,03",
   },
 ];
 
-function CardStatement() {
+const chooseLabel = (label: string) => {
+  switch (label) {
+    case "alimentação":
+      return (
+        <Avatar
+          style={{ color: "#5f5f5f", backgroundColor: "#f3f3f3" }}
+          size="large"
+          icon={<CoffeeOutlined />}
+        />
+      );
+      break;
+    case "transporte":
+      return (
+        <Avatar
+          style={{ color: "#5f5f5f", backgroundColor: "#f3f3f3" }}
+          size="large"
+          icon={<CarOutlined />}
+        />
+      );
+      break;
+    case "outros":
+      return (
+        <Avatar
+          style={{ color: "#5f5f5f", backgroundColor: "#f3f3f3" }}
+          size="large"
+          icon={<ShoppingOutlined />}
+        />
+      );
+      break;
+    case "escritório":
+      return (
+        <Avatar
+          style={{ color: "#5f5f5f", backgroundColor: "#f3f3f3" }}
+          size="large"
+          icon={<PaperClipOutlined />}
+        />
+      );
+      break;
+    default:
+      return (
+        <Avatar
+          style={{ color: "#5f5f5f", backgroundColor: "#f3f3f3" }}
+          size="large"
+          icon={<MoreOutlined />}
+        />
+      );
+  }
+};
+function CardStatement(props: any) {
+  let { dataSource } = props;
   return (
     <Card style={{ height: "100%" }} title="Fatura" hoverable>
       <List
         dataSource={dataSource}
-        renderItem={(d) => (
+        renderItem={(d: {
+          title: string;
+          label: string;
+          date: string;
+          price: string;
+        }) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<Avatar size="large" icon={<EllipsisOutlined />} />}
+              avatar={chooseLabel(d.label)}
               title={<span>{d.title}</span>}
               description={d.date}
             />

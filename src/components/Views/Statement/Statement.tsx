@@ -14,8 +14,8 @@ import {
 } from "@ant-design/icons";
 import QueueAnim from "rc-queue-anim";
 import { Avatar } from "antd";
-import { Bar, BarExtendedDatum, ResponsiveBar } from "@nivo/bar";
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { BarExtendedDatum, ResponsiveBar } from "@nivo/bar";
+import { useQuery } from "@apollo/client";
 import { FULL_STATE } from "../../../services/MockService";
 import NumberFormat from "react-number-format";
 

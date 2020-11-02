@@ -74,6 +74,56 @@ export const handlers = [
         saldo: "2400",
         titular: "Vitor Milano",
         banco: "NuBank",
+        extrato: [
+          {
+            title: "Netflix",
+            label: "outros",
+            date: "10/03/2020",
+            price: "R$20.102,03",
+          },
+          {
+            title: "McDonald's",
+            label: "alimentação",
+            date: "10/03/2020",
+            price: "R$3.102,33",
+          },
+          {
+            title: "Posto de Gasolina",
+            label: "transporte",
+            date: "10/03/2020",
+            price: "R$2.102,42",
+          },
+          {
+            title: "Impressora plotter",
+            label: "escritório",
+            date: "10/03/2020",
+            price: "R$27.321,13",
+          },
+          {
+            title: "Extra Supermercado",
+            label: "alimentação",
+            date: "10/03/2020",
+            price: "R$20.102,03",
+          },
+          {
+            title: "Oficina mecânica",
+            label: "transporte",
+            date: "10/03/2020",
+            price: "R$3.102,33",
+          },
+          {
+            title: "Kalunga Papelaria",
+            label: "escritório",
+            date: "10/03/2020",
+            price: "R$2.102,42",
+          },
+          {
+            title: "Restaurante Prato Sete",
+            label: "alimentação",
+            date: "10/03/2020",
+            price: "R$27.321,13",
+          },
+        ],
       },
       {
         dataVencimento: "23/05",
@@ -83,6 +133,38 @@ export const handlers = [
         saldo: "4600",
         titular: "Elisa Silva",
         banco: "Santander",
+        extrato: [
+          {
+            title: "Burger King",
+            label: "alimentação",
+            date: "10/03/2020",
+            price: "R$3.102,33",
+          },
+          {
+            title: "Posto Shell",
+            label: "transporte",
+            date: "10/03/2020",
+            price: "R$2.102,42",
+          },
+          {
+            title: "Apple Store",
+            label: "outros",
+            date: "10/03/2020",
+            price: "R$27.321,13",
+          },
+          {
+            title: "Carrefour Hipermercado",
+            label: "alimentação",
+            date: "10/03/2020",
+            price: "R$20.102,03",
+          },
+          {
+            title: "Papelaria São João",
+            label: "escritório",
+            date: "10/03/2020",
+            price: "R$2.102,42",
+          },
+        ],
       },
     ];
     let response = data;
