@@ -1,10 +1,4 @@
-import {
-  ApolloClient,
-  ApolloQueryResult,
-  gql,
-  NormalizedCacheObject,
-} from "@apollo/client";
-import { cache } from "../cache";
+import { gql } from "@apollo/client";
 
 export const BUSCA_QUERY = gql`
   query MockTest {

@@ -15,7 +15,7 @@ import { cache } from "./cache";
 function App() {
   const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
     cache,
-    uri: "http://mock/graphql",
+    uri: "https://mock/graphql",
   });
 
   return (
