@@ -20,7 +20,7 @@ export const handlers = [
       ctx.data({
         user: {
           username: authenticatedUser,
-          firstName: "Mario",
+          firstName: "Vitor",
         },
       })
     );
@@ -179,7 +179,6 @@ export const handlers = [
   }),
   graphql.query("GetFullStatement", (req, res, ctx) => {
     const { filter } = req.variables;
-    console.log(filter);
 
     const entryList = [
       {

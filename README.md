@@ -1,10 +1,22 @@
-<!--
+# Fintech-mock
 
-## Descrever no README como fazemos para rodar o projeto ou URL da aplicação "deployada";
-## Criar integração mockada com api GRAPHQL;
-## Criar tela de Login para um Internet Banking;
-## Criar a Home do Internet Banking da Conta Simples (dados da empresa, saldo, grafico de entrada e saida);
-## Criar extrato da empresa e detalhe do extrato;
-Permitir filtrar extrato por Tipo de Transação e flag de "Crédito" e "Débito";
-Criar um tela para mostrar transações agrupadas por cartão, apresentar finalCartao e valor;
- -->
+Fintech-mock is a test project, ReactJS powered, mocked with GraphQL. \*[fintech-mock] - Click here for the online demo!
+
+# How to run locally?
+
+- Clone the repository
+- Run the following:
+
+```sh
+$ cd fintech_mock
+$ yarn start
+```
+
+- Then, run `localhost:3000` from your browser
+- Have fun!
+
+## License
+
+MIT
+
+\*[fintech-mock] - Click here for the online demo!

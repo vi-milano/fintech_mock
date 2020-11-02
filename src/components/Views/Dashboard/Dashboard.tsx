@@ -17,9 +17,16 @@ import Avatar from "antd/lib/avatar/avatar";
 import { DownOutlined } from "@ant-design/icons";
 import Modal from "antd/lib/modal/Modal";
 
+interface AccountInfo {
+  accountBalance: string;
+  creditCardBalance: string;
+  investmentBalance: string;
+  creditAvailable: string;
+}
+
 const { Header, Content } = Layout;
 
-function Placeholder(props: any) {
+function AccountData(props: any) {
   return (
     <Col span={6}>
       <Card
@@ -55,13 +62,6 @@ function Placeholder(props: any) {
       </Card>
     </Col>
   );
-}
-
-interface AccountInfo {
-  accountBalance: string;
-  creditCardBalance: string;
-  investmentBalance: string;
-  creditAvailable: string;
 }
 
 function AboutModal(props: any) {
@@ -189,25 +189,25 @@ function Dashboard() {
           component={Row}
           componentProps={{ gutter: [15, 15] }}
         >
-          <Placeholder
+          <AccountData
             value={accInfo.data?.accountBalance}
             isLoading={accInfo.loading}
             title="Saldo"
             key="d"
           />
-          <Placeholder
+          <AccountData
             value={accInfo.data?.creditCardBalance}
             isLoading={accInfo.loading}
             title="Saldo dos cartões"
             key="dd"
           />
-          <Placeholder
+          <AccountData
             value={accInfo.data?.investmentBalance}
             isLoading={accInfo.loading}
             title="Total em investimentos"
             key="ddd"
           />
-          <Placeholder
+          <AccountData
             value={accInfo.data?.creditAvailable}
             isLoading={accInfo.loading}
             title="Crédito disponível"

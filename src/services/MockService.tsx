@@ -1,12 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const BUSCA_QUERY = gql`
-  query MockTest {
-    user {
-      firstName
-    }
-  }
-`;
 export const DASH_ACC_INFO = gql`
   query GetAccountInfo {
     accountBalance
@@ -49,32 +42,3 @@ export const CARD_INFO = gql`
     }
   }
 `;
-
-export const TEST = gql`
-  query GetCardInfo($label: String!) {
-    cards(label: $label) {
-      dataVencimento
-      final
-      label
-      limite
-      saldo
-      titular
-      banco
-    }
-  }
-`;
-// const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-//   cache,
-//   uri: "http://mock/graphql",
-// });
-// export const buscaX = () => {
-//   return client.query({
-//     query: gql`
-//       query MockTest {
-//         user {
-//           firstName
-//         }
-//       }
-//     `,
-//   });
-// };
