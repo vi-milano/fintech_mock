@@ -1,6 +1,7 @@
 # Fintech-mock
 
-Fintech-mock is a test project, ReactJS powered, mocked with GraphQL. \*[fintech-mock] - Click here for the online demo!
+Fintech-mock is a test project, ReactJS powered, mocked with GraphQL.
+[fintech-mock] - Click here for the online demo!
 
 # How to run locally?
 
@@ -19,4 +20,4 @@ $ yarn start
 
 MIT
 
-\*[fintech-mock] - Click here for the online demo!
+[fintech-mock]: https://https://fintech-mock.web.app/
