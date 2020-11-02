@@ -3,21 +3,12 @@ import "./CardStatement.scss";
 import { Card, List } from "antd";
 import { Avatar } from "antd";
 import {
-  EllipsisOutlined,
   PaperClipOutlined,
   MoreOutlined,
   CoffeeOutlined,
   CarOutlined,
   ShoppingOutlined,
 } from "@ant-design/icons";
-const dataSourceA = [
-  {
-    title: "Netflix",
-    label: "outros",
-    date: "10-03-2020",
-    price: "R$20.102,03",
-  },
-];
 
 const chooseLabel = (label: string) => {
   switch (label) {
@@ -70,7 +61,12 @@ const chooseLabel = (label: string) => {
 function CardStatement(props: any) {
   let { dataSource } = props;
   return (
-    <Card style={{ height: "100%" }} title="Fatura" hoverable>
+    <Card
+      headStyle={{ fontSize: 20 }}
+      style={{ height: "100%" }}
+      title="Fatura"
+      hoverable
+    >
       <List
         dataSource={dataSource}
         renderItem={(d: {

@@ -253,7 +253,7 @@ function Balance() {
     <Card
       hoverable
       headStyle={{ fontSize: 20 }}
-      bodyStyle={{ height: 345 }}
+      bodyStyle={{ height: 290 }}
       key="k3"
       title="Saldo mensal"
       size="small"

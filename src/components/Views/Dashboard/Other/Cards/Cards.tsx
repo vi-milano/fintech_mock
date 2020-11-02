@@ -43,12 +43,7 @@ function Cards(props: any) {
                 {cards[activeCard].banco}
               </div>
               <div className="creditcard__body--decoration">
-                <img
-                  style={{ height: 35 }}
-                  src={
-                    "https://cdn140.picsart.com/288622685092211.png?type=webp&to=min&r=640"
-                  }
-                />
+                <img style={{ height: 35 }} src={"/chip.png"} />
               </div>
               <div className="creditcard__body--number">
                 **** **** **** {cards[activeCard].final}
@@ -67,6 +62,36 @@ function Cards(props: any) {
             </div>
             <div className="creditcard__info">
               <ul>
+                <li style={{ fontSize: 28 }}>
+                  Fatura atual:{" "}
+                  <NumberFormat
+                    decimalScale={2}
+                    fixedDecimalScale={true}
+                    thousandSeparator={"."}
+                    decimalSeparator={","}
+                    prefix={"R$"}
+                    displayType={"text"}
+                    value={cards[activeCard].saldo}
+                    renderText={(value) => (
+                      <span style={{ fontWeight: "bold" }}>{value}</span>
+                    )}
+                  />
+                </li>
+                <li>
+                  Limite disponível:{" "}
+                  <NumberFormat
+                    decimalScale={2}
+                    fixedDecimalScale={true}
+                    thousandSeparator={"."}
+                    decimalSeparator={","}
+                    prefix={"R$"}
+                    displayType={"text"}
+                    value={cards[activeCard].limite - cards[activeCard].saldo}
+                    renderText={(value) => (
+                      <span style={{ fontWeight: "bold" }}>{value}</span>
+                    )}
+                  />
+                </li>
                 <li>
                   Limite:{" "}
                   <NumberFormat
@@ -87,36 +112,6 @@ function Cards(props: any) {
                   <span style={{ fontWeight: "bold" }}>
                     {cards[activeCard].dataVencimento}
                   </span>
-                </li>
-                <li>
-                  Limite disponível:{" "}
-                  <NumberFormat
-                    decimalScale={2}
-                    fixedDecimalScale={true}
-                    thousandSeparator={"."}
-                    decimalSeparator={","}
-                    prefix={"R$"}
-                    displayType={"text"}
-                    value={cards[activeCard].limite - cards[activeCard].saldo}
-                    renderText={(value) => (
-                      <span style={{ fontWeight: "bold" }}>{value}</span>
-                    )}
-                  />
-                </li>
-                <li>
-                  Fatura atual:{" "}
-                  <NumberFormat
-                    decimalScale={2}
-                    fixedDecimalScale={true}
-                    thousandSeparator={"."}
-                    decimalSeparator={","}
-                    prefix={"R$"}
-                    displayType={"text"}
-                    value={cards[activeCard].saldo}
-                    renderText={(value) => (
-                      <span style={{ fontWeight: "bold" }}>{value}</span>
-                    )}
-                  />
                 </li>
               </ul>
             </div>

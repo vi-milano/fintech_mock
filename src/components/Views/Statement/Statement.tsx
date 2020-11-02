@@ -80,7 +80,7 @@ function RespBar() {
       indexBy="month"
       margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
       padding={0.6}
-      colors={"#7eff88"}
+      colors={"black"}
       defs={[
         {
           id: "negativo",
@@ -136,6 +136,12 @@ function RespBar() {
       borderWidth={1}
       motionStiffness={90}
       motionDamping={15}
+      tooltip={(props) => (
+        <span>
+          Gasto Total:{" "}
+          <span style={{ fontWeight: "bold" }}>R${props.value}</span>
+        </span>
+      )}
     />
   );
 }

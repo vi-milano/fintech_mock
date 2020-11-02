@@ -4,7 +4,6 @@ import { Layout, Menu } from "antd";
 import {
   PieChartOutlined,
   FileOutlined,
-  QuestionCircleOutlined,
   CreditCardOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
@@ -17,7 +16,7 @@ function Main(props: any) {
     <Layout className="layout__container">
       <Sider collapsed={collapsed}>
         <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+        <Menu theme="dark" defaultSelectedKeys={["dashboard"]} mode="inline">
           <Menu.Item key="dashboard" icon={<PieChartOutlined />}>
             <Link to="/dashboard">Dashboard</Link>
           </Menu.Item>
@@ -26,9 +25,6 @@ function Main(props: any) {
           </Menu.Item>
           <Menu.Item key="cartoes" icon={<CreditCardOutlined />}>
             <Link to="/cartoes">Cartões</Link>
-          </Menu.Item>
-          <Menu.Item key="4" icon={<QuestionCircleOutlined />}>
-            Sobre
           </Menu.Item>
         </Menu>
       </Sider>

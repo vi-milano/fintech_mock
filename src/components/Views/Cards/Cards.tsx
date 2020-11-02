@@ -20,51 +20,51 @@ const MyResponsiveLine = () => {
       data: [
         {
           x: "JAN",
-          y: 15,
+          y: 1200,
         },
         {
           x: "FEV",
-          y: 248,
+          y: 2480,
         },
         {
           x: "MAR",
-          y: 148,
+          y: 1484,
         },
         {
           x: "ABR",
-          y: 236,
+          y: 2366,
         },
         {
           x: "MAI",
-          y: 287,
+          y: 2873,
         },
         {
           x: "JUN",
-          y: 159,
+          y: 1590,
         },
         {
           x: "JUL",
-          y: 196,
+          y: 1964,
         },
         {
           x: "AGO",
-          y: 272,
+          y: 2727,
         },
         {
           x: "SET",
-          y: 254,
+          y: 2543,
         },
         {
           x: "OUT",
-          y: 37,
+          y: 3761,
         },
         {
           x: "NOV",
-          y: 174,
+          y: 1748,
         },
         {
           x: "DEZ",
-          y: 114,
+          y: 1144,
         },
       ],
     },
@@ -73,7 +73,7 @@ const MyResponsiveLine = () => {
   return (
     <ResponsiveLine
       data={data}
-      margin={{ top: 50, right: 50, bottom: 50, left: 60 }}
+      margin={{ top: 30, right: 30, bottom: 30, left: 40 }}
       xScale={{ type: "point" }}
       yScale={{
         type: "linear",
@@ -109,6 +109,14 @@ const MyResponsiveLine = () => {
       enableArea={true}
       useMesh={true}
       colors={"#1890ff"}
+      tooltip={(props) => (
+        <span>
+          Gasto Total:{" "}
+          <span style={{ fontWeight: "bold" }}>
+            R${props.point.data.yFormatted}
+          </span>
+        </span>
+      )}
     />
   );
 };
@@ -117,7 +125,6 @@ function CardOverview(props: any) {
   let { data, change, activeCard } = props;
   let cards = data.cards;
 
-  // const [activeCard, setActiveCard] = useState(0);
   return (
     <Card
       style={{ display: "flex", flexDirection: "column", height: "100%" }}
@@ -150,12 +157,7 @@ function CardOverview(props: any) {
             {cards[activeCard].banco}
           </div>
           <div className="creditcard__body--decoration">
-            <img
-              style={{ height: 35 }}
-              src={
-                "https://cdn140.picsart.com/288622685092211.png?type=webp&to=min&r=640"
-              }
-            />
+            <img style={{ height: 35 }} src={"/chip.png"} />
           </div>
           <div className="creditcard__body--number">
             **** **** **** {cards[activeCard].final}
@@ -270,7 +272,8 @@ function Cards() {
                   bodyStyle={{
                     height: "80%",
                   }}
-                  title="Gráfico"
+                  headStyle={{ fontSize: 20 }}
+                  title="Gastos mensais"
                 >
                   <MyResponsiveLine />
                 </Card>

@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Dashboard.scss";
-import { Button, Card, Col, Dropdown, Layout, Menu, Row } from "antd";
+import { Card, Col, Dropdown, Layout, Menu, Row } from "antd";
 import Balance from "./Graphs/Balance/Balance";
 import Budget from "./Graphs/Budget/Budget";
 import Statement from "./Tables/Statement/Statement";
 import Cards from "./Other/Cards/Cards";
 import QueueAnim from "rc-queue-anim";
 import {
-  BUSCA_QUERY,
   DASH_ACC_INFO,
   SMALL_STATE,
   CARD_INFO,
-  TEST,
 } from "../../../services/MockService";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import NumberFormat from "react-number-format";
 import Avatar from "antd/lib/avatar/avatar";
 import { DownOutlined } from "@ant-design/icons";
 import Modal from "antd/lib/modal/Modal";
 
-const { Header, Footer, Content } = Layout;
+const { Header, Content } = Layout;
 
 function Placeholder(props: any) {
   return (
@@ -59,11 +57,6 @@ function Placeholder(props: any) {
   );
 }
 
-interface User {
-  username: string;
-  firstName: string;
-}
-
 interface AccountInfo {
   accountBalance: string;
   creditCardBalance: string;
@@ -82,12 +75,28 @@ function AboutModal(props: any) {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>Nome: Estrela Platina Alimentos Ltda</p>
-        <p>CNPJ: 28.433.294/0001-64</p>
-        <p>Inscrição Estadual: 540.472.404.569</p>
-        <p>Data de Abertura: 25/06/2015</p>
-        <p>CEP: 14784-349</p>
-        <p>Endereço: Avenida Ranulfo Prata 997</p>
+        <p>
+          <span style={{ fontWeight: "bold" }}>Nome:</span> Estrela Platina
+          Alimentos Ltda
+        </p>
+        <p>
+          <span style={{ fontWeight: "bold" }}>CNPJ:</span> 28.433.294/0001-64
+        </p>
+        <p>
+          <span style={{ fontWeight: "bold" }}>Inscrição Estadual:</span>{" "}
+          540.472.404.569
+        </p>
+        <p>
+          <span style={{ fontWeight: "bold" }}>Data de Abertura:</span>{" "}
+          25/06/2015
+        </p>
+        <p>
+          <span style={{ fontWeight: "bold" }}>CEP:</span> 14784-349
+        </p>
+        <p>
+          <span style={{ fontWeight: "bold" }}>Endereço:</span> Avenida Ranulfo
+          Prata 997
+        </p>
       </Modal>
     </>
   );
@@ -151,9 +160,7 @@ function Dashboard() {
           <Avatar
             style={{ color: "#5f5f5f", backgroundColor: "#f3f3f3" }}
             size="large"
-            src={
-              "https://i.pinimg.com/originals/1d/2d/68/1d2d68a435530dc9b36c5a7bb930b8fa.jpg"
-            }
+            src={"/serious_dog.png"}
           />
           <Dropdown overlay={menu} trigger={["click"]}>
             <div
